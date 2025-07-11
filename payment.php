@@ -11,10 +11,19 @@ if ($amount <= 0 || $order_id <= 0) {
     die("Lỗi: Không tìm thấy thông tin đơn hàng hoặc số tiền.");
 }
 
-// Thiết lập thông tin tài khoản
-$accountNo = "840337857323"; // Số tài khoản MBBank của Lê Văn Hoàng
-$accountName = "LE VAN HOANG"; // Tên tài khoản
-$bankId = "970422"; // Mã BIN của MBBank
+// Truy vấn thông tin tài khoản từ bảng bank
+$stmt = $conn->prepare("SELECT bank_bin, account_number, account_name FROM bank LIMIT 1");
+$stmt->execute();
+$bank = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$bank) {
+    die("Lỗi: Không tìm thấy thông tin tài khoản ngân hàng.");
+}
+
+// Thiết lập thông tin tài khoản từ dữ liệu truy vấn
+$bankId = $bank['bank_bin'];
+$accountNo = $bank['account_number'];
+$accountName = $bank['account_name'];
 $addInfo = "Thanh toan don hang DH{$order_id}"; // Nội dung chuyển khoản (có mã đơn hàng)
 $template = "compact"; // Kiểu hiển thị QR
 
