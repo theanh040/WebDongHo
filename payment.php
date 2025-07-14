@@ -2,40 +2,36 @@
 session_start();
 include 'db_connect.php'; // Kết nối database
 
-// Nhận số tiền và order_id từ query string
 $amount = isset($_GET['amount']) ? (int)$_GET['amount'] : 0;
 $order_id = isset($_GET['order_id']) ? (int)$_GET['order_id'] : 0;
 
-// Kiểm tra nếu không có số tiền hoặc order_id
 if ($amount <= 0 || $order_id <= 0) {
     die("Lỗi: Không tìm thấy thông tin đơn hàng hoặc số tiền.");
 }
 
-// Truy vấn thông tin tài khoản từ database
+
 $stmt = $conn->prepare("SELECT * FROM bank ORDER BY update_at DESC LIMIT 1");
 $stmt->execute();
 $bank_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Kiểm tra nếu không có thông tin tài khoản trong database
+
 if (!$bank_info) {
     die("Lỗi: Không tìm thấy thông tin tài khoản thụ hưởng. Vui lòng liên hệ admin.");
 }
 
-// Lấy thông tin tài khoản từ database
 $accountNo = $bank_info['account_number'];
 $accountName = $bank_info['account_name'];
 $bankId = $bank_info['bank_bin'];
 $addInfo = "Thanh toan don hang DH{$order_id}"; // Nội dung chuyển khoản (có mã đơn hàng)
 $template = "compact"; // Kiểu hiển thị QR
 
-// URL encode các tham số để xử lý khoảng trắng và ký tự đặc biệt
+
 $encodedAccountName = urlencode($accountName);
 $encodedAddInfo = urlencode($addInfo);
 
 // Tạo Quick Link VietQR
 $qrUrl = "https://img.vietqr.io/image/{$bankId}-{$accountNo}-{$template}.png?amount={$amount}&addInfo={$encodedAddInfo}&accountName={$encodedAccountName}";
 
-// Danh sách ngân hàng để hiển thị tên ngân hàng
 $banks = [
     "970425" => "Ngân hàng TMCP An Bình (ABB)",
     "970416" => "Ngân hàng TMCP Á Châu (ACB)",
@@ -100,7 +96,7 @@ $banks = [
     "momo" => "Ví MoMo"
 ];
 
-// Lấy tên ngân hàng
+
 $bankName = isset($banks[$bankId]) ? $banks[$bankId] : "Ngân hàng không xác định";
 
 // Xử lý khi nhấn "Xác nhận thanh toán"
@@ -433,7 +429,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
             const currentSrc = qrImage.src;
             const timestamp = new Date().getTime();
             
-            // Thêm timestamp để force refresh
+           
             if (currentSrc.includes('&t=')) {
                 qrImage.src = currentSrc.replace(/&t=\d+/, '&t=' + timestamp);
             } else {
@@ -441,7 +437,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
             }
         }, 300000); // 5 phút = 300,000ms
 
-        // Hiệu ứng click cho QR code
         document.getElementById('qr-image').addEventListener('click', function() {
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
