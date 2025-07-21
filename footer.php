@@ -2,14 +2,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <div class="footer-content">
         <div class="footer-section about">
-            <h1 class="logo-text"><span>Red</span> Jewelry</h1>
+            <h1 class="logo-text"><span>The</span> Jewelry</h1>
             <p>
-                Red Jewelry - Nơi kết tinh của vẻ đẹp, phong cách và sự thanh lịch. Chúng tôi tự hào mang đến những bộ trang sức tuyệt đẹp cho quý khách.
+                The Jewerlry - Nơi kết tinh của vẻ đẹp, phong cách và sự thanh lịch. Chúng tôi tự hào mang đến những bộ trang sức tuyệt đẹp cho quý khách.
             </p>
             <div class="contact">
                 <span><i class="fas fa-map-marker-alt"></i> Hà Nội, Việt Nam</span>
                 <span><i class="fas fa-phone"></i> +84 24 1234 5678</span>
-                <span><i class="fas fa-envelope"></i> info@redjewelry.vn</span>
+                <span><i class="fas fa-envelope"></i> info@tthejewerlry.vn</span>
             </div>
 
         </div>
@@ -44,7 +44,7 @@
     </div>
 
     <div class="footer-bottom">
-        &copy; 2025 Red Jewelry | Designed by Red Team
+        &copy; 2025 The Jewerlry | Designed by The Jewerlry Team
     </div>
     <li><a href="login.php" class="login-link" title="Đăng nhập"><i class="fas fa-user"></i></a></li>
 </footer>
