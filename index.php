@@ -1,5 +1,5 @@
 <?php 
-$pageTitle = 'Red - Fashion Eyewear';
+$pageTitle = 'The Jewerlry';
 include 'header.php';
 ?>
 <link rel="stylesheet" href="css/home.css?v=3">
