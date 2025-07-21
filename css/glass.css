@@ -1,0 +1,307 @@
+/* Reset và biến màu sắc */
+:root {
+    --primary-color: #000;
+    --secondary-color: #333;
+    --background-color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Header styles */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: var(--background-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* Hero section */
+.hero {
+    padding: 4rem 5%;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Glasses showcase */
+.showcase-container {
+    display: flex;
+    gap: 20px;
+    padding: 2rem 5%;
+    height: 1600px;
+}
+
+.showcase-feature {
+    flex: 1; /* Chiếm 1 phần bên trái */
+}
+
+.showcase-grid {
+    flex: 1; /* Chiếm 1 phần bên phải */
+    display: flex;
+    flex-direction: column; /* Xếp các items theo chiều dọc */
+    gap: 20px;
+}
+
+.showcase-item {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.showcase-item img,
+.showcase-feature img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+}
+
+.showcase-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Best Sellers Section */
+.best-sellers {
+    padding: 4rem 5%;
+   
+}
+
+.best-sellers h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.product-card .price {
+    font-size: 1.1rem;
+    color: #e63946; /* Màu đỏ cho giá */
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .best-sellers h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .product-card img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* Footer */
+footer {
+    background: var(--background-color);
+    padding: 3rem 5%;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-links {
+    margin-top: 2rem;
+}
+
+/* Intro section styles */
+.intro-section {
+    padding: 2rem 5%;
+    margin-bottom: 2rem;
+     /* Màu nền xanh nhạt */
+}
+
+.intro-content {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 45% 10% 45%; /* Chia làm 3 phần: nội dung trái - phần chia - nội dung phải */
+    min-height: 300px;
+}
+
+.intro-content h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    align-self: top;
+}
+
+.intro-content .divider {
+
+    height: 100%;
+    width: 100%;
+}
+
+.intro-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    width: 860%;
+    font-size: 20px;
+}
+
+.vietnamese-text,
+.english-text {
+    line-height: 1.8;
+    color: #333;
+}
+
+.english-text {
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .intro-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .intro-content .divider {
+        display: none;
+    }
+
+    .intro-content h1 {
+        font-size: 3rem;
+        text-align: center;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .showcase-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .showcase-grid {
+        gap: 20px;
+    }
+
+    .showcase-item,
+    .showcase-feature {
+        height: 300px;
+    }
+}
+
+/* Heading styles trong glasses-showcase */
+.glasses-showcase h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 2rem 5%;
+    margin-bottom: 0.5rem;
+    
+    color: #333;
+}
+
+.glasses-showcase h3 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    
+    color: #666;
+    margin: 2rem 5%;
+    margin-top: 0;
+    font-style: italic;
+}
+
+/* Thêm animation cho h3 */
+@keyframes fadeInOut {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.glasses-showcase h3 {
+    animation: fadeInOut 2s infinite;
+}
+
+/* Responsive Design cho headings */
+@media (max-width: 768px) {
+    .glasses-showcase h2 {
+        font-size: 2rem;
+    }
+
+    .glasses-showcase h3 {
+        font-size: 1rem;
+    }
+}

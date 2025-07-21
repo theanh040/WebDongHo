@@ -1,0 +1,836 @@
+/* Import Google Fonts cho thương hiệu đồng hồ sang trọng */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* Variables cho thương hiệu đồng hồ sang trọng */
+:root {
+    --luxury-black: #0a0a0a;
+    --pure-white: #ffffff;
+    --gold-accent: #c9a96e;
+    --rose-gold: #e8b4a0;
+    --silver-accent: #c0c0c0;
+    --charcoal: #2c2c2c;
+    --warm-gray: #8a8a8a;
+    --light-gray: #f5f5f5;
+    --transition-luxury: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    --shadow-luxury: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --shadow-premium: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--charcoal);
+    background-color: var(--pure-white);
+    overflow-x: hidden;
+}
+
+/* Product Detail Container - Luxury Style */
+.product-detail {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    background: var(--pure-white);
+    position: relative;
+}
+
+/* Add decorative elements matching main page */
+.product-detail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(201, 169, 110, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    margin-bottom: 8rem;
+    background: var(--pure-white);
+    padding: 5rem;
+    border-radius: 4px;
+    box-shadow: var(--shadow-luxury);
+    border: 1px solid rgba(201, 169, 110, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(201, 169, 110, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Add floating decorative elements */
+.product-container::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 8px;
+    height: 8px;
+    background: rgba(201, 169, 110, 0.2);
+    border-radius: 50%;
+    animation: luxuryFloat 8s ease-in-out infinite;
+}
+
+@keyframes luxuryFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.3;
+    }
+    50% { 
+        transform: translateY(-25px) rotate(180deg);
+        opacity: 0.6;
+    }
+}
+
+/* Product Images Section - Premium Style */
+.product-images {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.main-image {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--light-gray) 0%, #e9ecef 100%);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(201, 169, 110, 0.2);
+    transition: var(--transition-luxury);
+    position: relative;
+    cursor: zoom-in;
+    box-shadow: var(--shadow-luxury);
+}
+
+.main-image:hover {
+    border-color: var(--gold-accent);
+    box-shadow: var(--shadow-premium);
+    transform: translateY(-5px);
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-luxury);
+}
+
+.main-image:hover img {
+    transform: scale(1.05);
+}
+
+.thumbnail-images {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: rgba(245, 245, 245, 0.5);
+    border-radius: 4px;
+    border: 1px solid rgba(201, 169, 110, 0.1);
+}
+
+.thumbnail-images img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid rgba(201, 169, 110, 0.2);
+    border-radius: 4px;
+    transition: var(--transition-luxury);
+    opacity: 0.7;
+    position: relative;
+    overflow: hidden;
+}
+
+.thumbnail-images img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(201, 169, 110, 0.1), transparent);
+    opacity: 0;
+    transition: var(--transition-luxury);
+}
+
+.thumbnail-images img:hover::before,
+.thumbnail-images img.active::before {
+    opacity: 1;
+}
+
+.thumbnail-images img:hover,
+.thumbnail-images img.active {
+    border-color: var(--gold-accent);
+    opacity: 1;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-luxury);
+}
+
+/* Product Information Section - Luxury Typography */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.product-info h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 400;
+    color: var(--luxury-black);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.product-info h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(135deg, var(--gold-accent), var(--rose-gold));
+    border-radius: 2px;
+}
+
+.price {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 400;
+    background: linear-gradient(135deg, var(--gold-accent), var(--rose-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Specifications - Premium Design */
+.product-specs {
+    background: linear-gradient(135deg, var(--light-gray) 0%, rgba(201, 169, 110, 0.05) 100%);
+    padding: 2.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(201, 169, 110, 0.1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-luxury);
+}
+
+.product-specs::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, var(--gold-accent), var(--rose-gold));
+}
+
+.product-specs h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--luxury-black);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.product-specs ul {
+    list-style: none;
+    padding: 0;
+}
+
+.product-specs li {
+    margin: 1rem 0;
+    color: var(--charcoal);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+    transition: var(--transition-luxury);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.product-specs li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--gold-accent);
+    border-radius: 50%;
+    opacity: 0;
+    transition: var(--transition-luxury);
+}
+
+.product-specs li:hover::before {
+    opacity: 1;
+}
+
+.product-specs li:last-child {
+    border-bottom: none;
+}
+
+.product-specs li:hover {
+    color: var(--gold-accent);
+    transform: translateX(10px);
+}
+
+/* Product Description - Elegant Style */
+.product-description {
+    background: var(--pure-white);
+    padding: 2.5rem;
+    border-radius: 4px;
+    border: 1px solid rgba(201, 169, 110, 0.1);
+    box-shadow: var(--shadow-luxury);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-description::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(135deg, var(--gold-accent), var(--rose-gold));
+}
+
+.product-description h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--luxury-black);
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.product-description p {
+    color: var(--warm-gray);
+    line-height: 1.8;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+/* Quantity Selector - Premium Style */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0;
+    background: var(--pure-white);
+    border: 1px solid rgba(201, 169, 110, 0.3);
+    border-radius: 4px;
+    padding: 0.5rem;
+    width: fit-content;
+    box-shadow: var(--shadow-luxury);
+    position: relative;
+}
+
+.quantity-selector::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(201, 169, 110, 0.05), transparent);
+    pointer-events: none;
+}
+
+.quantity-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: var(--light-gray);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    border-radius: 2px;
+    transition: var(--transition-luxury);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.quantity-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gold-accent);
+    transition: var(--transition-luxury);
+    z-index: -1;
+}
+
+.quantity-btn:hover::before {
+    left: 0;
+}
+
+.quantity-btn:hover {
+    color: var(--luxury-black);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-luxury);
+}
+
+.quantity-selector input {
+    width: 80px;
+    height: 50px;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--luxury-black);
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    z-index: 2;
+}
+
+.quantity-selector input:focus {
+    color: var(--gold-accent);
+}
+
+/* Action Buttons - Luxury Style */
+.action-buttons {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.buy-now, .add-to-cart {
+    flex: 1;
+    padding: 1.5rem 2.5rem;
+    border: 1px solid var(--gold-accent);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    border-radius: 2px;
+    transition: var(--transition-luxury);
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.buy-now {
+    background: var(--gold-accent);
+    color: var(--luxury-black);
+    box-shadow: var(--shadow-luxury);
+}
+
+.buy-now::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--luxury-black);
+    transition: var(--transition-luxury);
+    z-index: -1;
+}
+
+.buy-now:hover::before {
+    left: 0;
+}
+
+.buy-now:hover {
+    color: var(--gold-accent);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-premium);
+}
+
+.add-to-cart {
+    background: transparent;
+    color: var(--gold-accent);
+}
+
+.add-to-cart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gold-accent);
+    transition: var(--transition-luxury);
+    z-index: -1;
+}
+
+.add-to-cart:hover::before {
+    left: 0;
+}
+
+.add-to-cart:hover {
+    color: var(--luxury-black);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-luxury);
+}
+
+/* Related Products Section - Premium Style */
+.related-products {
+    margin-top: 8rem;
+    padding: 6rem 0;
+    background: var(--light-gray);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.related-products::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 80%, rgba(201, 169, 110, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.related-products h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 4rem;
+    text-align: center;
+    color: var(--luxury-black);
+    font-weight: 400;
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.related-products h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(135deg, var(--gold-accent), var(--rose-gold));
+    border-radius: 2px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2.5rem;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Product Card - Matching Main Product Style */
+.product-card {
+    background: var(--pure-white);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: var(--shadow-luxury);
+    transition: var(--transition-luxury);
+    border: 1px solid rgba(201, 169, 110, 0.1);
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-premium);
+    border-color: rgba(201, 169, 110, 0.3);
+}
+
+.product-card .product-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    background: linear-gradient(135deg, var(--light-gray), #e9ecef);
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-luxury);
+}
+
+.product-card:hover img {
+    transform: scale(1.03);
+}
+
+.product-card .product-info {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--luxury-black);
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+.product-card .price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin: 0;
+    margin-top: auto;
+    background: linear-gradient(135deg, var(--gold-accent), var(--rose-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 1px;
+}
+
+.product-card a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-luxury);
+}
+
+.product-card a:hover h3 {
+    color: var(--gold-accent);
+}
+
+/* Animation Classes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-container {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.product-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.1s; }
+.product-card:nth-child(2) { animation-delay: 0.2s; }
+.product-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .product-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        padding: 4rem;
+    }
+
+    .product-detail {
+        padding: 4rem 2rem;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-container {
+        padding: 2rem;
+        gap: 3rem;
+    }
+
+    .product-detail {
+        padding: 3rem 1rem;
+    }
+
+    .product-info h1 {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+    }
+
+    .price {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .quantity-selector {
+        justify-content: center;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .related-products {
+        margin-top: 6rem;
+        padding: 4rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-detail {
+        padding: 2rem 1rem;
+    }
+
+    .product-container {
+        padding: 1.5rem;
+    }
+
+    .product-info h1 {
+        font-size: clamp(1.8rem, 4vw, 2.2rem);
+    }
+
+    .thumbnail-images {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .thumbnail-images img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .buy-now, .add-to-cart {
+        padding: 1.2rem 2rem;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Accessibility and Focus States */
+.quantity-btn:focus,
+.buy-now:focus,
+.add-to-cart:focus {
+    outline: 2px solid var(--gold-accent);
+    outline-offset: 2px;
+}
+
+/* Enhanced Button States */
+.buy-now:active,
+.add-to-cart:active {
+    transform: translateY(-1px);
+}
+
+/* Scrollbar Styling - Luxury Feel */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold-accent);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--rose-gold);
+}
+
+/* Selection Styling */
+::selection {
+    background: var(--gold-accent);
+    color: var(--luxury-black);
+}
+
+/* Premium loading effects */
+.main-image img {
+    opacity: 0;
+    animation: luxuryFadeIn 1s ease-out 0.3s forwards;
+}
+
+@keyframes luxuryFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
