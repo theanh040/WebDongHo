@@ -1,30 +1,40 @@
 <?php
 session_start();
-include 'db_connect.php'; // Kết nối database (giả định bạn đã có file này)
+include 'db_connect.php';
 
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
+    $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
-
-    // Kiểm tra dữ liệu đầu vào
     if (empty($username) || empty($password)) {
         $error = "Vui lòng điền đầy đủ thông tin.";
+    } elseif (strlen($username) > 50) {
+        $error = "Tên đăng nhập quá dài (tối đa 50 ký tự).";
     } else {
-        // Truy vấn thông tin người dùng từ database
-        $stmt = $conn->prepare("SELECT * FROM admins WHERE username = ?");
-        $stmt->execute([$username]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND role IN ('admin', 'customer')");
+            $stmt->execute([$username]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
-            // Đăng nhập thành công
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            header("Location: admin\index.php"); // Chuyển hướng đến trang dashboard sau khi đăng nhập thành công
-            exit();
-        } else {
-            $error = "Tên đăng nhập hoặc mật khẩu không đúng.";
+            if ($user && $password === $user['password']) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['role'];
+                // check role
+                if ($user['role'] === 'admin') {
+                    header("Location: profile.php");
+                } elseif ($user['role'] === 'customer') {
+                    header("Location: profile.php");
+                }
+                exit;
+            } else {
+                $error = "Tên đăng nhập hoặc mật khẩu không đúng.";
+                error_log("Failed login attempt for username: $username", 3, 'errors.log');
+            }
+        } catch (PDOException $e) {
+            $error = "Lỗi hệ thống, vui lòng thử lại sau.";
+            error_log("Login error: " . $e->getMessage(), 3, 'errors.log');
         }
     }
 }
