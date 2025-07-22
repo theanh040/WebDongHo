@@ -1,9 +1,9 @@
 <?php 
 session_start(); 
 $host = 'localhost';
-$dbname = 'jewerlryy'; // Tên database của bạn
+$dbname = 'jewerlryy'; 
 $username = 'root';
-$password = ''; // Mật khẩu MySQL của bạn
+$password = ''; 
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
@@ -14,29 +14,28 @@ try {
     die("Kết nối database thất bại: " . $e->getMessage());
 }
 
-include 'header.php';
 
 try {
-    // Lấy thông tin user
-    $user_id = $_SESSION['user_id']; // do login đang lỗi nên để tạm id = 9
+    
+    $user_id = $_SESSION['user_id']; 
     $query_user = "SELECT * FROM users WHERE id = ? AND role = 'customer'";
     $stmt_user = $pdo->prepare($query_user);
     $stmt_user->execute([$user_id]);
     $user = $stmt_user->fetch(PDO::FETCH_ASSOC);
     
-    // Kiểm tra user có tồn tại không
+    
     if (!$user) {
         die("Không tìm thấy thông tin người dùng!");
     }
 
-    // Xử lý cập nhật thông tin profile
+    
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
         $full_name = trim($_POST['full_name']);
         $email = trim($_POST['email']);
         $phone = trim($_POST['phone']);
         $address = trim($_POST['address']);
         
-        // Validate dữ liệu
+        
         if (empty($full_name) || empty($email)) {
             $error_message = "Tên và email không được để trống!";
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -56,10 +55,9 @@ try {
         }
     }
 
-    // Lấy tab hiện tại
+    
     $current_tab = isset($_GET['tab']) ? $_GET['tab'] : 'home';
 
-    // Lấy sản phẩm theo danh mục cho tab home
     $category_filter = isset($_GET['category']) ? $_GET['category'] : 'all';
     $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 
@@ -580,7 +578,7 @@ body {
                 </a>
             </li>
             <li class="nav-item">
-                <a href="../logout.php" class="nav-link">
+                <a href="logout.php" class="nav-link">
                     <i class="fas fa-sign-out-alt"></i>Đăng xuất
                 </a>
             </li>
